@@ -13,8 +13,8 @@ RUN apk add --update --no-cache --virtual .build-deps build-base git \
 FROM ruby:2.5-alpine3.8
 COPY --from=builder /opt/jsonnet/libjsonnet.so /usr/local/lib/libjsonnet.so
 COPY --from=builder /opt/jsonnet/libjsonnet.h /usr/local/include/libjsonnet.h
-RUN apk add --update --no-cache --virtual .build-deps g++ \
+RUN apk --update --no-cache add openssh git zip make docker \
+      && apk add --update --no-cache --virtual .build-deps g++ \
       && JSONNET_USE_SYSTEM_LIBRARIES=1 gem install hako -v 2.3.1 -N --no-rdoc --no-ri \
-      && apk del --purge .build-deps \
-      && apk --update --no-cache add openssh git zip make docker
+      && apk del --purge .build-deps
 
