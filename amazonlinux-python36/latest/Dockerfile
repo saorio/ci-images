@@ -1,5 +1,4 @@
-FROM amazonlinux:2018.03
-
+FROM amazonlinux:latest
 RUN yum upgrade -y \
     && yum -y install python36 python36-virtualenv python36-pip zip \
     && rm -rf /var/cache/yum/* \
