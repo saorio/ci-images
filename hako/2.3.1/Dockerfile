@@ -16,5 +16,5 @@ COPY --from=builder /opt/jsonnet/libjsonnet.h /usr/local/include/libjsonnet.h
 RUN apk --update --no-cache add openssh git zip make docker libstdc++ \
       && apk add --update --no-cache --virtual .build-deps g++ \
       && JSONNET_USE_SYSTEM_LIBRARIES=1 gem install hako -v 2.3.1 -N --no-rdoc --no-ri \
-      && gem install specific_install && gem specific_install https://github.com/moaikids/hako-parameterstore.git master
+      && gem install specific_install -N && gem specific_install https://github.com/moaikids/hako-parameterstore.git master
       && apk del --purge .build-deps
