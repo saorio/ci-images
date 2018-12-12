@@ -24,7 +24,7 @@ jobs:
           name: docker push
           working_directory: ~/ci-images/go/1.11.1
           command: |
-            docker tag $REPOSITORY:latest
+            docker tag $REPOSITORY $REPOSITORY:latest
             docker push $REPOSITORY:latest quay.io/repository/saorio/$REPOSITORY:latest
 
 workflows:
