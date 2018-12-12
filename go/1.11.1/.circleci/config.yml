@@ -2,7 +2,7 @@ version: 2.1
 
 executors:
   docker:
-    working_directory: ~/workspace
+    working_directory: ~/ci-images/go/1.11.1
     docker:
       - image: docker:18.03-git
 
