@@ -12,26 +12,26 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: docker login
+          name: quay.io docker login
           working_directory: ~/ci-images/go/1.11.1
           command: docker login quay.io -u "$QUAY_IO_USERNAME" -p "$QUAY_IO_PASSWORD"
       - run:
           name: docker build
           working_directory: ~/ci-images/go/1.11.1
           command: |
-            docker build -t $REPOSITORY .
+            docker build -t $GO_1.11.1_REPOSITORY .
       - run:
-          name: docker push
+          name: quay.io docker push
           working_directory: ~/ci-images/go/1.11.1
           command: |
-            docker tag $REPOSITORY quay.io/saorio/$REPOSITORY:latest
-            docker push quay.io/saorio/$REPOSITORY:latest
+            docker tag $GO_1.11.1_REPOSITORY quay.io/gunosy/$GO_1.11.1_REPOSITORY:latest
+            docker push quay.io/gunosy/$GO_1.11.1_REPOSITORY:latest
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:     
       - build_and_push_image_to_quay:
-          filters:
-            tags:
-              only: /.*/
+          branches:
+            only:
+              - master
