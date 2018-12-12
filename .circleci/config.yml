@@ -1,8 +1,8 @@
-version: 2
+version: 2.1
 
 executors:
   docker:
-    working_directory: ~/ci-images
+    working_directory: ~/workspace
     docker:
       - image: docker:18.03-git
 
@@ -68,5 +68,3 @@ workflows:
           filters:
             tags:
               only: /.*/
-
-  
