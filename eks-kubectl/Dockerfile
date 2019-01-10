@@ -14,6 +14,8 @@ RUN curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases/late
 RUN mv kustomize_*_linux_amd64 kustomize
 RUN chmod +x ./aws-iam-authenticator
 RUN chmod +x ./kubectl
-RUN chmod +x kustomize
+RUN chmod +x ./kustomize
 RUN cp ./aws-iam-authenticator /bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
 RUN cp ./kubectl /bin/kubectl && export PATH=$HOME/bin:$PATH
+RUN cp ./kustomize /bin/kustomize
+
