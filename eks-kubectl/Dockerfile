@@ -6,11 +6,7 @@ RUN rm -r /root/.cache
 RUN mkdir .kube
 RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
 RUN curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl
-RUN curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases/latest |\
-  grep browser_download |\
-  grep linux |\
-  cut -d '"' -f 4 |\
-  xargs curl -O -L
+RUN curl -O -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64
 RUN mv kustomize_*_linux_amd64 kustomize
 RUN chmod +x ./aws-iam-authenticator
 RUN chmod +x ./kubectl
