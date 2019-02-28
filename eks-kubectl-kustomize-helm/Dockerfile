@@ -1,9 +1,11 @@
 FROM python:3-alpine3.8
-RUN apk --update --no-cache add curl wget make
+RUN apk --update --no-cache add curl wget make gcc g++
 RUN pip install --upgrade pip setuptools awscli
 RUN rm -r /root/.cache
 
 RUN mkdir .kube
+RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+RUN mv /tmp/eksctl /usr/local/bin
 RUN curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
 RUN curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl
 RUN curl -O -L https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64
