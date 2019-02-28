@@ -1,5 +1,5 @@
 FROM python:3-alpine3.8
-RUN apk --update --no-cache add curl wget
+RUN apk --update --no-cache add curl wget make
 RUN pip install --upgrade pip setuptools awscli
 RUN rm -r /root/.cache
 
